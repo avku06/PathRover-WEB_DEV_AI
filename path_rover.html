@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>PATH ROVER</title>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css"> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="public/interactive.js"> </script>
+<script type="text/javascript" src="public/interactive2.js"> </script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+
+
+<script>
+window.onload=createGrid;
+
+$(function(){
+    document.getElementById("mydrop").classList.toggle("show");	
+   
+	$("#algorithm").draggable({
+	   containment:"#container"
+	});
+	$("#instructions").draggable({
+		 containment:"#container"
+	});
+	$("._click").draggable({
+		 containment:"#container"
+	});
+	$("#information").draggable({
+		 containment:"#container"
+	});
+	$('#_hide').click(function() {
+        $('#instructions').slideUp();
+    });
+    $("#mode_change").draggable({
+		 containment:"#container"
+	});
+    $("#start").click(() => {
+        $("#start").text("Restart Search");
+        enablePause();
+		start_search();
+    });
+    $("#clr_grid").click(() => {
+        stopSearch();
+        clearWalls();
+    });
+    $("#pause_").click(() => {
+        pauseSearch();
+    });
+    $("#stair").click(() => {
+       stairDemonstration();
+    });
+	
+	$("#rec_div").click(() => {
+       Recursion_Division();
+    });
+    $("#sim_demo").click(() => {
+       simpleDemonstration();
+    });
+	
+});
+
+</script>
+
+
+
+</head>
+
+<body style="height: 100%; width: 100%">
+
+<div id="wrapper">
+
+<div id="container" ui-grid="gridOptions" ui-grid-auto-resize > 
+
+<div id="instructions"> 
+<header>
+<span id="_header"> Instructions </span>
+<span id="_hide">Hide</span>
+</header>
+<p id="ins_head">
+Click within the grid or drag your mouse to draw "black" obstacles.<br> Drag the <span style="color:#008B00;"> green</span> node to set the start position. <br> Drag the <span style="color:#aa0114;">red </span>node to set the end position.<br>Choose the algorithm from right hand panel . <br> Click the start search in the lower-right corner to start animation.
+</p>
+</div>
+<div id="mode_change">
+<button class="mode" onclick="change_theme('#211a23')">Dark Mode</button>
+<br>
+<button class="mode extra" onclick="change_theme('white')">Light Mode</button>
+</div>
+
+<div id="algorithm"> 
+<div class="select"><i class="fa fa-code" aria-hidden="true"></i> <span>Select Algorithm </span></div>
+
+<div class="i_algo"> 
+
+<button onclick="A_algo()" class="dropbtn">A*</button>
+
+<div class="dropdown_content" id="mydrop">
+<span class="heuristic_head" >Heuristic</span>
+<br>
+<div class="heuristic">
+<input type="radio" id="Man" name="path_A1" value="Manhattan" checked>
+<label for="Manhattan">Manhattan</label>
+<br>
+<input type="radio" id="Man" name="path_A1" value="Euclidiean">
+<label for="Euclidiean">Euclidiean</label>
+<br>
+<input type="radio" id="Man" name="path_A1" value="Octile">
+<label for="Octile">Octile</label>
+<br>
+<input type="radio" id="Man" name="path_A1" value="Chebysev">
+<label for="Chebysev">Chebysev</label>
+<br>
+</div>
+<span class="heuristic_head"> Options</span>
+<br>
+<div class="heuristic">
+<input type="checkbox" id="a1" name="allow1" value="Allow_dia" checked>
+<label for="a1"> Allow Diagonal</label>
+<br>
+<input type="checkbox" id="a2" name="bi1" value="Bi-directional">
+<label for="a2"> Bi-directional</label>
+<br>
+<input type="checkbox" id="a3" name="cross1" value="Don't_Cross">
+<label for="a3"> Don't Cross Corners</label>
+<br>
+<input type="text" id="weight1" name="weight" value="1">
+<label for="weight">Weight</label>
+</div>
+</div>
+</div>
+
+<div class="i_algo"> 
+
+<button onclick="BFS_algo()" class="dropbtn">Breadth First Search</button>
+<div class="dropdown_content" id="mydrop3">
+<span class="heuristic_head"> Options</span>
+<br>
+<div class="heuristic">
+<input type="checkbox" id="a7" name="allow1" value="Allow_dia" checked>
+<label for="a7"> Allow Diagonal</label>
+<br>
+<input type="checkbox" id="a8" name="bi1" value="Bi-directional">
+<label for="a8"> Bi-directional</label>
+<br>
+<input type="checkbox" id="a9" name="cross1" value="Don't_Cross">
+<label for="a9"> Don't Cross Corners</label>
+
+</div>
+</div>
+
+</div>
+<div class="i_algo"> 
+
+<button onclick="BtFS_algo()" class="dropbtn">Best First Search</button>
+
+<div class="dropdown_content" id="mydrop4">
+<span class="heuristic_head" >Heuristic</span>
+<br>
+<div class="heuristic">
+<input type="radio" id="Manhattan" name="path_A3" value="Manhattan" checked>
+<label for="Manhattan">Manhattan</label>
+
+<br>
+<input type="radio" id="Euclidiean" name="path_A3" value="Euclidiean">
+<label for="Euclidiean">Euclidiean</label>
+<br>
+<input type="radio" id="Octile" name="path_A3" value="Octile">
+<label for="Octile">Octile</label>
+<br>
+<input type="radio" id="Chebysev" name="path_A3" value="Chebysev">
+<label for="Chebysev">Chebysev</label>
+<br>
+</div>
+<span class="heuristic_head"> Options</span>
+<br>
+<div class="heuristic">
+<input type="checkbox" id="a10" name="allow1" value="Allow_dia" checked>
+<label for="a10"> Allow Diagonal</label>
+<br>
+<input type="checkbox" id="a11" name="bi1" value="Bi-directional">
+<label for="a11"> Bi-directional</label>
+<br>
+<input type="checkbox" id="a12" name="cross1" value="Don't_Cross">
+<label for="a12"> Don't Cross Corners</label>
+</div>
+</div>
+
+</div>
+<div class="i_algo">
+
+
+<button onclick="DJK_algo()" class="dropbtn">Dijkstra</button>
+<div class="dropdown_content" id="mydrop5">
+<span class="heuristic_head"> Options</span>
+<br>
+<div class="heuristic">
+<input type="checkbox" id="a13" name="allow1" value="Allow_dia" checked>
+<label for="a13"> Allow Diagonal</label>
+<br>
+<input type="checkbox" id="a14" name="bi1" value="Bi-directional">
+<label for="a14"> Bi-directional</label>
+<br>
+<input type="checkbox" id="a15" name="cross1" value="Don't_Cross">
+<label for="a15"> Don't Cross Corners</label>
+
+</div>
+</div>
+ </div>
+
+
+<div class="patterns" > 
+    <div class="select"><i class="fa fa-cubes" aria-hidden="true"></i> <span>Mazes & Pattern </span></div>
+        <div class="dropbtn pat">
+            <input type="radio" id="stair" name="pattern_" value="stair">
+            <label for ="stair" > Stair Pattern</label><br>
+            <input type="radio" id="rec_div" name="pattern_" value="rec_div">
+            <label for ="rec_div" > Recursion Division</label><br>
+            <input type="radio" id="sim_demo" name="pattern_" value="sim_demo">
+            <label for ="sim_demo" >Spiral Pattern</label><br>
+        </div>
+</div>
+ 
+</div>
+     
+
+<div class="_click">  
+    <button class="click_button" id="start">Start Search</button>                
+    <button class="click_button" id="pause_">Pause Search</button>
+    <button class="click_button" id="clr_grid">Clear Wall</button>
+</div>
+
+<div id = "information">
+
+</div>
+
+
+</div>
+
+</div>
+
+<script type="text/javascript" src="particles.js"></script>
+<script type="text/javascript" src="app3.js"></script>
+
+
+</body>
+</html>

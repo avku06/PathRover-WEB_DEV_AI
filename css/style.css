@@ -1,0 +1,312 @@
+
+body{
+	overflow:hidden;
+    background-color:#211a23;
+}
+
+#wrapper{
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:auto;      
+	margin-top:auto;        
+	width:1366px;
+}
+
+#wrapper canvas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    left: 0px;
+    top: 0px;
+	margin-right:0px;
+	margin-bottom:0px;
+}
+
+#container{
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:auto;      
+	margin-top:auto;
+	height:100%;
+	width:100%;
+	outline:1px ridge lightgray;
+	position:relative;
+	border:none;
+	padding:0;
+    font-size:0;
+}
+
+.grid{
+	font-size:1px;
+	outline:1px ridge darkgray;
+	display:inline-block;
+	margin:0;
+	border:none;
+	padding:0;
+	color:black;
+}
+
+.current_{
+	opacity:1;
+	background-color:deepskyblue;
+}
+
+.neighbor_{
+	opacity:1;
+	background-color:palegreen;
+}
+
+.start_{
+	background-color:#004F00;
+}
+
+.path{
+	background-color:yellow;
+}
+
+.end_{	
+	background-color:#aa0114;
+}
+
+.current_{
+	opacity:1;
+	background-color:deepskyblue;
+}
+
+.neighbor_{
+	opacity:1;
+	background-color:palegreen;
+}
+
+.clr{
+	background-color:#020202;
+}
+
+.node-visited{
+	background-color:#00FFAA;   
+/*    green*/
+}
+
+.node-shortest-path{
+	background-color:#e3ac0f;
+}
+
+._node-visited{
+	background-color:#D1EEEE;
+/*    blue*/
+}
+
+#instructions{
+	margin:15px;
+	padding:5px;
+	width:560px;
+	height:160px;
+	background-color:#cecfca;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+	opacity:0.9;
+	position:fixed;
+	border-radius:10px;
+	font-size:18px;
+	color:black;
+    font-weight: bolder;
+}
+
+#mode_change{
+	background-color: #cecfca;
+	position:fixed;
+	border-radius:10px;
+	width:121px;
+	height:65px;
+	margin-top:190px;
+	left:20px;
+}
+
+
+.mode{
+	opacity:1;
+	margin:5px;
+	background-color: #8f9094;
+	opacity:0.9;
+	position:fixed;
+	border-radius:10px;
+	font-size:18px;
+	color:black;
+    font-weight: bolder;
+}
+
+.extra{
+	margin-top:35px;
+}
+
+#_header{
+	font-size:25px;
+	opacity:1;
+	font-weight:bold;
+}
+
+#_hide{
+	position:absolute;
+	cursor:pointer;
+	right:25px;
+	top:10px;
+	opacity:1;
+    font-size:20px;
+}
+
+#ins_head{
+	opacity:1;
+}
+
+#algorithm{
+	background-color: #cecfca;
+	opacity:0.9;
+	position:fixed;
+	border-radius:10px;
+	width:270px;
+	height:550px;
+   right:12px;
+	top:15px;
+	color:white;
+	font-size:14px;
+	 box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+	 padding-left:12px;
+    font-weight: bolder;
+	 
+}
+
+#i_algo{
+	background-color:rgba(51,51,51,1);
+	opacity:0.9;
+	color:white;
+	border:none;
+	display:inline-block;
+}
+
+.select{
+	opacity:1;
+	margin:5px;
+	padding:1px;
+	font-weight:1500;
+	text-align:center;
+    font-size:17px;
+    color: black;
+}
+
+.patterns{
+	bottom:20px;
+	position:absolute;
+}
+
+.dropbtn{
+	margin:2px;
+	font-weight:bold;
+	cursor:pointer;
+	width:250px;
+	background-color:#8f9094;
+	opacity:0.9px;
+	color: black;
+	font-size:15px;
+	padding:3px;
+	border-radius:10px;
+}
+
+.pat{
+
+	font-size:15px;
+	margin-bottom:5px;
+}
+
+.heuristic{
+	margin-left:40px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.heuristic_head{
+	margin-left:20px;
+	font-size:18px;
+	font-weight:bold;
+}
+
+.dropdown_content{
+	background-color: #8f9094;
+	display:none;
+	box-shadow:0px 8px 16 px 0px rgba(0,0,0,0,0.2);
+	padding:13px;
+	z-index:1;
+    color: black;
+    font-size: 16px;
+	width:230px;
+	border-radius:15px;
+}
+
+#weight{
+	width:30px;
+	font-weight:bold;
+}
+
+.show{
+	display:block;
+}
+
+._click{
+    background-color: #cecfca;
+	opacity:0.9;
+	position:fixed;
+	border-radius:10px;
+	width:270px;
+	height:70px;
+	top:570px;
+	right:12px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    font-weight: bolder;
+}
+
+#information{
+	color:black;
+    font-weight: bolder;
+	position:fixed;
+	top:580px;
+	margin-left:20px;
+    padding: 7px;
+	font-size:15px;
+    border-radius: 5px;
+	background-color:rgba(255,255,255,0.8);
+	
+}
+
+.click_button{
+	background-color:#8f9094;
+	color:black;
+	margin:7px;
+	margin-top:14px;
+	border-radius:5px;
+	width:28%;
+	cursor:pointer;
+	opacity:1;
+    font-weight: bolder;
+}
+
+.chng{
+    background-color:#8f9094;
+	color:black;
+	margin:7px;
+	margin-top:14px;
+	border-radius:5px;
+	width:28%;
+	cursor:pointer;
+	opacity:1;
+    font-weight: bold;
+}
+
+.about{
+	color:green;
+	top:580px;
+	left:15px;
+	position: fixed;
+}
+
+.click_button:hover{
+	background-color:white;
+}
